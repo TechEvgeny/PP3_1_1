@@ -2,6 +2,10 @@ package com.preproject.boot.ProjectPP3Boot.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "users")
@@ -11,13 +15,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotEmpty(message = "Фамилия не должна быть пустой")
+    @Pattern(regexp = "^[a-zA-Zа-яА-ЯёЁ]+$", message = "Фамилия может содержать только буквы")
     @Column(name = "name")
     private String name;
 
+    @Min(value = 0, message = "возраст не может быть отрицательным")
     @Column(name = "age")
     private int age;
 
+    @NotEmpty(message = "Email не должен быть пустым")
     @Column(name = "email")
+    @Email
     private String email;
 
     public User() {

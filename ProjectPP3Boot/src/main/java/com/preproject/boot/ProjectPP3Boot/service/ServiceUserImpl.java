@@ -1,14 +1,16 @@
 package com.preproject.boot.ProjectPP3Boot.service;
 
 
-import com.preproject.boot.ProjectPP3Boot.DAO.UserDao;
-import com.preproject.boot.ProjectPP3Boot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.preproject.boot.ProjectPP3Boot.DAO.UserDao;
+import com.preproject.boot.ProjectPP3Boot.model.User;
+
 import java.util.List;
 
 @Service
+@Transactional
 public class ServiceUserImpl implements ServiceUser {
 
     private final UserDao userDao;
@@ -25,7 +27,6 @@ public class ServiceUserImpl implements ServiceUser {
     }
 
     @Override
-    @Transactional
     public void save(User user) {
         userDao.save(user);
     }
@@ -42,7 +43,6 @@ public class ServiceUserImpl implements ServiceUser {
     }
 
     @Override
-    @Transactional
     public void updateUser(int id, User user) {
         userDao.updateUser(id, user);
     }
